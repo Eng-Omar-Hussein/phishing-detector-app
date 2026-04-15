@@ -1,5 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
+    id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android") // Apply the plugin
 }
 
 android {
@@ -28,6 +30,14 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+    sourceSets {
+        getByName("debug") {
+            java.srcDir("build/generated/ksp/debug/kotlin")
+        }
+        getByName("release") {
+            java.srcDir("build/generated/ksp/release/kotlin")
+        }
+    }
 }
 
 dependencies {
@@ -43,4 +53,14 @@ dependencies {
     // Network & Database (Retrofit, Room)
     implementation(libs.retrofit)
     implementation(libs.androidx.room.runtime)
+
+    // Hilt Dependency Injection
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler.v250)
+    ksp(libs.androidx.room.compiler)
+    // Java Inject (Standard annotations)
+    implementation(libs.javax.inject)
+
+    implementation(libs.converter.gson)
+
 }

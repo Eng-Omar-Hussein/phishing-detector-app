@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_inbox"
+            android:icon="@drawable/ic_inbox"
+            android:title="Inbox" />
+        <item
+            android:id="@+id/nav_starred"
+            android:icon="@drawable/ic_star"
+            android:title="Starred" />
+        <item
+            android:id="@+id/nav_sent"
+            android:icon="@drawable/ic_send"
+            android:title="Sent" />
+        <item
+            android:id="@+id/nav_drafts"
+            android:icon="@drawable/ic_drafts"
+            android:title="Drafts" />
+        <item
+            android:id="@+id/nav_all_mail"
+            android:icon="@drawable/ic_mail"
+            android:title="All Mail" />
+        <item
+            android:id="@+id/nav_hooked"
+            android:icon="@drawable/ic_hook"
+            android:title="Hooked (Phishing)" />
+        <item
+            android:id="@+id/nav_spam"
+            android:icon="@drawable/ic_spam"
+            android:title="Spam" />
+        <item
+            android:id="@+id/nav_trash"
+            android:icon="@drawable/ic_delete"
+            android:title="Trash" />
+    </group>
+
+    <item android:title="Labels">
+        <menu>
+            <item
+                android:id="@+id/nav_create_label"
+                android:icon="@drawable/ic_add"
+                android:title="Create new label" />
+        </menu>
+    </item>
+
+    <item android:title="Other">
+        <menu>
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_settings"
+                android:title="Settings" />
+            <item
+                android:id="@+id/nav_help"
+                android:icon="@drawable/ic_help"
+                android:title="Help &amp; Feedback" />
+            <!-- ADD: Logout -->
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_logout"
+                android:title="Logout" />
+        </menu>
+    </item>
+</menu>

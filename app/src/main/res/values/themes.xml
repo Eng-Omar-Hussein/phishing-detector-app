@@ -5,5 +5,11 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.PhishingDetector" parent="Base.Theme.PhishingDetector" />
+    <style name="Theme.PhishingDetector" parent="Theme.MaterialComponents.DayNight.NoActionBar" />
+
+    <style name="CircleImageView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
 </resources>

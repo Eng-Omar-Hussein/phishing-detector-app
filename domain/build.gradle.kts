@@ -39,6 +39,10 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.converter.gson)
+
+    // Standard Java Injection (@Inject)
+    implementation(libs.javax.inject)
 
 
 }

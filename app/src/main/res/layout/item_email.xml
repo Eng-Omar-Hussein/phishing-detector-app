@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginVertical="4dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="2dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp">
+
+        <!-- AVATAR -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imgSenderAvatar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/CircleImageView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:src="@drawable/img_user" />
+
+        <!-- UNREAD DOT -->
+        <View
+            android:id="@+id/viewUnreadDot"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/bg_unread_dot"
+            android:visibility="gone"
+            app:layout_constraintStart_toEndOf="@id/imgSenderAvatar"
+            app:layout_constraintTop_toTopOf="@id/imgSenderAvatar"
+            app:layout_constraintBottom_toBottomOf="@id/imgSenderAvatar"
+            tools:visibility="visible" />
+
+        <!-- DATE -->
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10:30 AM"
+            android:textColor="?android:attr/textColorSecondary"
+            android:textSize="12sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- SENDER -->
+        <TextView
+            android:id="@+id/tvSender"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Google Security"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/viewUnreadDot"
+            app:layout_constraintEnd_toStartOf="@id/tvDate"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- ATTACHMENT ICON -->
+        <ImageView
+            android:id="@+id/imgAttachment"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="2dp"
+            android:src="@drawable/ic_attach_file"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/tvDate"
+            app:layout_constraintEnd_toStartOf="@id/imgStar"
+            tools:visibility="visible" />
+
+        <!-- STAR ICON -->
+        <ImageView
+            android:id="@+id/imgStar"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_star_border"
+            app:layout_constraintTop_toBottomOf="@id/imgAttachment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <!-- SUBJECT -->
+        <TextView
+            android:id="@+id/tvSubject"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:text="Security Alert: New Login"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/viewUnreadDot"
+            app:layout_constraintEnd_toStartOf="@id/imgAttachment"
+            app:layout_constraintTop_toBottomOf="@id/tvSender" />
+
+        <!-- SNIPPET -->
+        <TextView
+            android:id="@+id/tvSnippet"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="We noticed a new login to your account from..."
+            android:textColor="?android:attr/textColorSecondary"
+            android:textSize="13sp"
+            app:layout_constraintStart_toEndOf="@id/viewUnreadDot"
+            app:layout_constraintEnd_toStartOf="@id/imgStar"
+            app:layout_constraintTop_toBottomOf="@id/tvSubject" />
+
+        <!-- PHISHING CHIP -->
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipHookedWarning"
+            style="@style/Widget.MaterialComponents.Chip.Entry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:clickable="false"
+            android:focusable="false"
+            android:text="🎣 Phishing Detected"
+            android:textColor="@android:color/white"
+            android:textSize="11sp"
+            android:visibility="gone"
+            app:chipBackgroundColor="@color/red"
+            app:chipIconVisible="false"
+            app:closeIconVisible="false"
+            app:layout_constraintStart_toEndOf="@id/viewUnreadDot"
+            app:layout_constraintTop_toBottomOf="@id/tvSnippet"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:visibility="visible" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
