@@ -16,6 +16,13 @@ allprojects {
         buildUponDefaultConfig = true
         ignoreFailures = false 
     }
+
+    tasks.matching { it.name.startsWith("extract") && it.name.endsWith("Annotations") }.configureEach {
+        val variantName = this.name.removePrefix("extract").removeSuffix("Annotations")
+        val kspTaskName = "ksp${variantName}Kotlin"
+        
+        dependsOn(tasks.matching { it.name == kspTaskName })
+    }
 }
 
 dependencyCheck {
