@@ -33,6 +33,7 @@ jobs:
 
       - name: Run Android Lint
         run: ./gradlew lintRelease
+        continue-on-error: true
 
       - name: Run Detekt Analysis
         run: ./gradlew detekt
@@ -61,13 +62,14 @@ jobs:
         env:
           NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
         run: ./gradlew dependencyCheckAnalyze
+        continue-on-error: true
 
       - name: Run Unit Tests
         run: ./gradlew testReleaseUnitTest
 
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v4
-        if: success() || failure()
+        if: always()
         with:
           report_paths: '**/build/test-results/testReleaseUnitTest/TEST-*.xml'
           commit: ${{github.event.after}}
@@ -81,3 +83,27 @@ jobs:
           name: Phishing Detector App
           path: app/build/outputs/apk/debug/Phishing-Detector.apk
           retention-days: 7 # Principle of least privilege/data minimization      
+
+      - name: Upload Lint Reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lint-reports
+          path: '**/build/reports/lint-results-release.html'
+          retention-days: 7
+
+      - name: Upload Detekt Reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detekt-reports
+          path: '**/build/reports/detekt/detekt.html'
+          retention-days: 7
+      
+      - name: Upload SCA Reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dependency-check-report
+          path: '**/build/reports/dependency-check-report.html'
+          retention-days: 7

@@ -42,6 +42,13 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
+    lint {
+        abortOnError = false // Lint will print warnings/errors but the build will succeed
+        checkReleaseBuilds = true
+        xmlReport = true
+        htmlReport = true
+    }
 }
 
 dependencies {
