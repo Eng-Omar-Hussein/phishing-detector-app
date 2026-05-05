@@ -23,6 +23,12 @@ allprojects {
         
         dependsOn(tasks.matching { it.name == kspTaskName })
     }
+
+    tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
+       reports {
+           xml.required.set(true)
+       }
+   }
 }
 
 dependencyCheck {

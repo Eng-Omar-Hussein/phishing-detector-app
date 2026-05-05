@@ -43,7 +43,6 @@ android {
         abortOnError = false
         checkReleaseBuilds = true
         xmlReport = true
-        htmlReport = true
     }
 }
 

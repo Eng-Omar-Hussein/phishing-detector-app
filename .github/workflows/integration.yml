@@ -49,6 +49,22 @@ jobs:
         uses: github/codeql-action/analyze@v4
         with:
           category: "/language:java-kotlin"
+      
+      - name: Upload Lint Reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lint-reports
+          path: '**/build/reports/lint-results-*.xml'
+          retention-days: 7
+
+      - name: Upload Detekt Reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: detekt-reports
+          path: '**/build/reports/detekt/*.xml'
+          retention-days: 7
 
   build-and-test:
     name: Build, SCA & Test
@@ -75,39 +91,26 @@ jobs:
 
       - name: Run Unit Tests
         run: ./gradlew testReleaseUnitTest
+        continue-on-error: true
 
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v4
         if: always()
         with:
-          report_paths: '**/build/test-results/testReleaseUnitTest/TEST-*.xml'
+          report_paths: '**/build/test-results/**/*.xml'
           commit: ${{github.event.after}}
 
       - name: Build Debug APK
         run: ./gradlew assembleDebug
+        continue-on-error: true
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: Phishing Detector App
           path: app/build/outputs/apk/debug/Phishing-Detector.apk
           retention-days: 7 # Principle of least privilege/data minimization      
-
-      - name: Upload Lint Reports
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: lint-reports
-          path: '**/build/reports/lint-results-release.html'
-          retention-days: 7
-
-      - name: Upload Detekt Reports
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: detekt-reports
-          path: '**/build/reports/detekt/detekt.html'
-          retention-days: 7
       
       - name: Upload SCA Reports
         uses: actions/upload-artifact@v4

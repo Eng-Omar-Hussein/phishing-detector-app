@@ -44,10 +44,9 @@ android {
     }
 
     lint {
-        abortOnError = false // Lint will print warnings/errors but the build will succeed
+        abortOnError = false
         checkReleaseBuilds = true
         xmlReport = true
-        htmlReport = true
     }
 }
 
