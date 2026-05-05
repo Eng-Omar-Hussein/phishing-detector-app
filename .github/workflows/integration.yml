@@ -64,6 +64,9 @@ jobs:
           distribution: 'zulu'
           java-version: '21'
 
+      - name: Make gradlew executable
+        run: chmod +x gradlew
+
       - name: Run OWASP Dependency Check
         env:
           NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
