@@ -83,22 +83,22 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x gradlew
 
-      # - name: Run OWASP Dependency Check
-      #   env:
-      #     NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
-      #   run: ./gradlew dependencyCheckAnalyze
-      #   continue-on-error: true
+      - name: Run OWASP Dependency Check
+        env:
+          NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
+        run: ./gradlew dependencyCheckAnalyze
+        continue-on-error: true
 
-      # - name: Run Unit Tests
-      #   run: ./gradlew testReleaseUnitTest
-      #   continue-on-error: true
+      - name: Run Unit Tests
+        run: ./gradlew testReleaseUnitTest
+        continue-on-error: true
 
-      # - name: Publish Test Report
-      #   uses: mikepenz/action-junit-report@v4
-      #   if: always()
-      #   with:
-      #     report_paths: '**/build/test-results/**/*.xml'
-      #     commit: ${{github.event.after}}
+      - name: Publish Test Report
+        uses: mikepenz/action-junit-report@v4
+        if: always()
+        with:
+          report_paths: '**/build/test-results/**/*.xml'
+          commit: ${{github.event.after}}
 
       - name: Build Debug APK
         run: ./gradlew assembleDebug
