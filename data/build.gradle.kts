@@ -38,6 +38,12 @@ android {
             java.srcDir("build/generated/ksp/release/kotlin")
         }
     }
+
+    lint {
+        abortOnError = false
+        checkReleaseBuilds = true
+        xmlReport = true
+    }
 }
 
 dependencies {

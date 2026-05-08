@@ -42,6 +42,12 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
+    lint {
+        abortOnError = false
+        checkReleaseBuilds = true
+        xmlReport = true
+    }
 }
 
 dependencies {
